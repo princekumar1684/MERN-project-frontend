@@ -12,7 +12,7 @@ const Products = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [deleteModal, setDeleteModal] = useState(false);
 
-  const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(`${API_URL}/api/products`, {

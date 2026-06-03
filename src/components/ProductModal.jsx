@@ -57,7 +57,7 @@ const ProductModal = ({ open, onClose, product, fetchProducts }) => {
     form.append("image", file);
 
     const { data } = await axios.post(
-      "http://localhost:3000/api/upload/image",
+      `${import.meta.env.VITE_BACKEND_URL}/api/upload/image `,
       form,
       {
         headers: {
@@ -116,7 +116,7 @@ const ProductModal = ({ open, onClose, product, fetchProducts }) => {
 
       if (product) {
         await axios.post(
-          `http://localhost:3000/api/products/update/${product._id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/api/products/update/${product._id}`,
           formData,
           {
             withCredentials: true,
@@ -126,7 +126,7 @@ const ProductModal = ({ open, onClose, product, fetchProducts }) => {
         alert("Product Updated");
       } else {
         await axios.post(
-          "http://localhost:3000/api/products/create",
+          `${import.meta.env.VITE_BACKEND_URL}/api/products/create`,
           formData,
           {
             withCredentials: true,
