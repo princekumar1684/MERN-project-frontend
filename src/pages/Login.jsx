@@ -170,6 +170,17 @@ const Login = () => {
               Login to your Productr Account
             </h1>
 
+            <div className="mb-6 p-4 rounded-lg border border-blue-200 bg-blue-50">
+              <h3 className="font-semibold text-blue-800 mb-1">
+                Demo Login Credentials
+              </h3>
+              <p className="text-sm text-blue-700">
+                Use any Email or Mobile Number and enter
+                <span className="font-bold"> 123456 </span>
+                as the OTP.
+              </p>
+            </div>
+
             {step === 1 ? (
               <form onSubmit={sendOtp}>
                 <label className="block mb-3 text-gray-700">
