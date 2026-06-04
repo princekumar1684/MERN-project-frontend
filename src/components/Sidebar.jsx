@@ -14,6 +14,7 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
         { withCredentials: true },
       );
 
+      localStorage.removeItem("token");
       navigate("/login");
     } catch (err) {
       console.log(err);
