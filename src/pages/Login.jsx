@@ -101,6 +101,10 @@ const Login = () => {
         },
       );
 
+      const token = data.token;
+
+      localStorage.setItem("token", token);
+
       alert(data.message);
 
       if (data.success) {

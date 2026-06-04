@@ -13,7 +13,9 @@ const MainRoutes = () => {
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/me`, {
-        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
       .then((res) => setAuth(res.data.loggedIn))
       .catch(() => setAuth(false));
