@@ -21,7 +21,7 @@ const Products = () => {
 
       console.log(data);
 
-      setProducts(data.products || []);
+      setProducts(data?.products || []);
     } catch (error) {
       console.log(error);
     }
