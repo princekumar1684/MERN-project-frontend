@@ -3,12 +3,16 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 
-const DashboardLayout = () => {
+const DashboardLayout = ({ setAuth }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   return (
     <div className="flex h-screen">
-      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
+     <Sidebar
+  openSidebar={openSidebar}
+  setOpenSidebar={setOpenSidebar}
+  setAuth={setAuth}
+/>
 
       <div className="flex-1 flex flex-col">
         <Navbar setOpenSidebar={setOpenSidebar} />
