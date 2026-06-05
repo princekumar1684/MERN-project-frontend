@@ -101,9 +101,9 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      if (meRes.data.loggedIn) {
-        window.location.href = "/dashboard";
-      }
+if (meRes.data.loggedIn) {
+  navigate("/dashboard", { replace: true });
+}
     }
   } catch (error) {
     console.log(error);
