@@ -10,20 +10,20 @@ import DashboardLayout from "../layout/DashboardLayout";
 const MainRoutes = () => {
   const [auth, setAuth] = useState(null);
 
+  const checkAuth = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/me`,
+        { withCredentials: true }
+      );
+
+      setAuth(res.data.loggedIn);
+    } catch (err) {
+      setAuth(false);
+    }
+  };
+
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/auth/me`,
-          { withCredentials: true }
-        );
-
-        setAuth(res.data.loggedIn);
-      } catch (err) {
-        setAuth(false);
-      }
-    };
-
     checkAuth();
   }, []);
 
@@ -31,8 +31,10 @@ const MainRoutes = () => {
 
   return (
     <Routes>
+ 
+      <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
-
+ 
       <Route
         element={auth ? <DashboardLayout /> : <Navigate to="/login" />}
       >
