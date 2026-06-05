@@ -13,8 +13,9 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
         {},
         { withCredentials: true },
       );
-
-      navigate("/login");
+ 
+  window.location.href = "/#/login";
+ 
     } catch (err) {
       console.log(err);
     }
