@@ -6,7 +6,7 @@ import login from "../assets/login.jpg";
 
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setAuth }) => {
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
@@ -95,14 +95,9 @@ const Login = () => {
 
     alert(data.message);
 
-    if (data.success) {
-      const meRes = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/auth/me`,
-        { withCredentials: true }
-      );
-
-      if (meRes.data.loggedIn) {
-  window.location.href = "/#/dashboard";
+if (data.success) {
+  setAuth(true);
+  navigate("/dashboard", { replace: true });
 }
     }
   } catch (error) {
