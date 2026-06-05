@@ -7,7 +7,7 @@ const DashboardLayout = ({ setAuth }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   return (
-    <div className="flex h-screen">
+   <div className="flex min-h-[100dvh]">
      <Sidebar
   openSidebar={openSidebar}
   setOpenSidebar={setOpenSidebar}
