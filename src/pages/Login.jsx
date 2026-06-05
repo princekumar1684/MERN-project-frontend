@@ -73,51 +73,44 @@ const Login = () => {
   };
 
   const verifyOtp = async () => {
-    const finalOtp = otp.join("");
+  const finalOtp = otp.join("");
 
-    if (finalOtp.length !== 6) {
-      alert("Please enter valid OTP");
-      return;
-    }
+  if (finalOtp.length !== 6) {
+    alert("Please enter valid OTP");
+    return;
+  }
 
-    const payload = identifier.includes("@")
-      ? {
-          email: identifier,
-          otp: finalOtp,
-        }
-      : {
-          mobile: identifier,
-          otp: finalOtp,
-        };
+  const payload = identifier.includes("@")
+    ? { email: identifier, otp: finalOtp }
+    : { mobile: identifier, otp: finalOtp };
 
-    try {
-      setLoading(true);
+  try {
+    setLoading(true);
 
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/auth/verify-otp`,
-        payload,
-        {
-          withCredentials: true,
-        },
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/api/auth/verify-otp`,
+      payload,
+      { withCredentials: true }
+    );
+
+    alert(data.message);
+
+    if (data.success) {
+ 
+      await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/me`,
+        { withCredentials: true }
       );
 
-      const token = data.token;
-
-      localStorage.setItem("token", token);
-
-      alert(data.message);
-
-      if (data.success) {
-        navigate("/dashboard");
-      }
-    } catch (error) {
-      console.log(error);
-
-      alert(error?.response?.data?.message || "OTP Verification Failed");
-    } finally {
-      setLoading(false);
+      navigate("/dashboard");
     }
-  };
+  } catch (error) {
+    console.log(error);
+    alert(error?.response?.data?.message || "OTP Verification Failed");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const resendOtp = async () => {
     const payload = identifier.includes("@")
