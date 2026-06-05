@@ -16,7 +16,6 @@ const MainRoutes = () => {
         `${import.meta.env.VITE_BACKEND_URL}/api/auth/me`,
         { withCredentials: true }
       );
-
       setAuth(res.data.loggedIn);
     } catch (err) {
       setAuth(false);
@@ -31,43 +30,33 @@ const MainRoutes = () => {
 
   return (
     <Routes>
- 
-<Route
-  path="/"
-  element={
-    auth ? (
-      <Navigate to="/dashboard" replace />
-    ) : (
-      <Login setAuth={setAuth} />
-    )
-  }
-/>
+      <Route
+        path="/"
+        element={
+          auth ? <Navigate to="/dashboard" /> : <Login setAuth={setAuth} />
+        }
+      />
 
-<Route
-  path="/login"
-  element={
-    auth ? (
-      <Navigate to="/dashboard" replace />
-    ) : (
-      <Login setAuth={setAuth} />
-    )
-  }
-/>
- 
-<Route
-  element={
-    auth ? (
-      <DashboardLayout setAuth={setAuth} />
-    ) : (
-      <Navigate to="/login" />
-    )
-  }
->
+      <Route
+        path="/login"
+        element={
+          auth ? <Navigate to="/dashboard" /> : <Login setAuth={setAuth} />
+        }
+      />
+
+      <Route
+        element={
+          auth ? (
+            <DashboardLayout setAuth={setAuth} />
+          ) : (
+            <Navigate to="/login" />
+          )
+        }
+      >
         <Route path="/dashboard" element={<Home />} />
         <Route path="/products" element={<Products />} />
       </Route>
 
- 
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
