@@ -95,11 +95,11 @@ const Login = ({ setAuth }) => {
 
     alert(data.message);
 
-if (data.success) {
-  setAuth(true);
-  navigate("/dashboard", { replace: true });
-}
+    if (data.success) {
+      setAuth(true);  
+      navigate("/dashboard", { replace: true });  
     }
+
   } catch (error) {
     console.log(error);
     alert(error?.response?.data?.message || "OTP Verification Failed");
