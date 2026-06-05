@@ -32,8 +32,15 @@ const MainRoutes = () => {
   return (
     <Routes>
  
-      <Route path="/" element={<Login />} />
-      <Route path="/login" element={<Login />} />
+<Route
+  path="/"
+  element={auth ? <Navigate to="/dashboard" replace /> : <Login />}
+/>
+
+<Route
+  path="/login"
+  element={auth ? <Navigate to="/dashboard" replace /> : <Login />}
+/>
  
       <Route
         element={auth ? <DashboardLayout /> : <Navigate to="/login" />}
