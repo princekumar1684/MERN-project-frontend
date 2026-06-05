@@ -20,7 +20,7 @@ const Home = () => {
         withCredentials: true,
       });
 
-      setProducts(data.products || []);
+      setProducts(data?.products || []);
     } catch (error) {
       console.log(error);
     }
