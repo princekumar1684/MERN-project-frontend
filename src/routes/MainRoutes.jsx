@@ -34,12 +34,24 @@ const MainRoutes = () => {
  
 <Route
   path="/"
-  element={auth ? <Navigate to="/dashboard" replace /> : <Login />}
+  element={
+    auth ? (
+      <Navigate to="/dashboard" replace />
+    ) : (
+      <Login setAuth={setAuth} />
+    )
+  }
 />
 
 <Route
   path="/login"
-  element={auth ? <Navigate to="/dashboard" replace /> : <Login />}
+  element={
+    auth ? (
+      <Navigate to="/dashboard" replace />
+    ) : (
+      <Login setAuth={setAuth} />
+    )
+  }
 />
  
       <Route
