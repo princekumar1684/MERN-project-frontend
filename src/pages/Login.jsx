@@ -96,13 +96,14 @@ const Login = () => {
     alert(data.message);
 
     if (data.success) {
- 
-      await axios.get(
+      const meRes = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/auth/me`,
         { withCredentials: true }
       );
 
-      navigate("/dashboard");
+      if (meRes.data.loggedIn) {
+        window.location.href = "/dashboard";
+      }
     }
   } catch (error) {
     console.log(error);
