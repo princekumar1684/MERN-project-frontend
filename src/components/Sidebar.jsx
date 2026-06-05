@@ -3,22 +3,33 @@ import { Home, LogOut, ShoppingBag, X } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Sidebar = ({ openSidebar, setOpenSidebar }) => {
+const Sidebar = ({ openSidebar, setOpenSidebar , setAuth}) => {
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
+const handleLogout = async () => {
+
     try {
+
       await axios.post(
+
         `${import.meta.env.VITE_BACKEND_URL}/api/auth/logout`,
+
         {},
-        { withCredentials: true },
+
+        { withCredentials: true }
+
       );
- 
-  window.location.href = "/#/login";
- 
+
+      setAuth(false);
+
+      navigate("/login", { replace: true });
+
     } catch (err) {
+
       console.log(err);
+
     }
+
   };
 
   return (
