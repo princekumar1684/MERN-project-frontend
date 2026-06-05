@@ -54,9 +54,15 @@ const MainRoutes = () => {
   }
 />
  
-      <Route
-        element={auth ? <DashboardLayout /> : <Navigate to="/login" />}
-      >
+<Route
+  element={
+    auth ? (
+      <DashboardLayout setAuth={setAuth} />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+>
         <Route path="/dashboard" element={<Home />} />
         <Route path="/products" element={<Products />} />
       </Route>
